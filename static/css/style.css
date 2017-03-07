@@ -1,0 +1,123 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+
+/*********** header ***********/
+div#header {
+    height: 10%;
+    width: 100%;
+    position: absolute;
+    background: #222;
+    z-index: 100;
+}
+
+#header h1 {
+    color: #fff;
+    font-size: 40px;
+    padding: 20px;
+    text-align: center;
+    margin: 0;
+}
+
+
+/*********** container ***********/
+div#container {
+    height: 78%;
+    background: #ccc;
+    width: 100%;
+    position: absolute;
+    top: 10%;
+    overflow: hidden;
+}
+
+div#menu {
+    width: 25%;
+    height: 100%;
+    padding: 10px;
+    background: #666;
+    overflow-y: scroll;
+}
+
+div#content {
+    width: 75%;
+    height: 100%;
+    padding: 20px;
+    background: #ccc;
+    position: absolute;
+    top: 0;
+    overflow-y: scroll;
+    right: 0;
+}
+
+.row div {
+    height: 40px;
+}
+
+.paper {
+    background: #fff;
+    padding: 20px;
+    min-height: 300px;
+}
+
+.pic-box {
+    margin: 0 auto;
+    width: 870px;
+}
+
+.pic-box img {
+    width: 100%;
+}
+
+/*********** footer ***********/
+div#footer {
+    height: 12%;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    background: #222;
+}
+
+#footer div {
+    padding-top: 5px;
+    display: inline-block;
+}
+
+#footer button {
+    margin: 0 auto;
+    font-size: 20px;
+    height: 70px;
+}
+
+#footer #home {
+    width: 15%;
+}
+
+#footer #home button {
+    display: block;
+    font-size: 25px;
+    width: 95%;
+}
+
+#footer #exit {
+    width: 15%;
+}
+
+#footer #exit button {
+    display: block;
+    font-size: 25px;
+    width: 95%;
+}
+
+#footer #nav {
+    width: 69%;
+}
+
+#footer #nav button {
+    font-size: 30px;
+    width: 33%;
+}
+
+
+
