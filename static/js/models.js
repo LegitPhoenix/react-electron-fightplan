@@ -11,6 +11,7 @@ var sequelize = new _sequelize.Sequelize(null, null, null, { dialect: 'sqlite', 
 
 var Town = exports.Town = sequelize.define('town', {
   name: _sequelize.Sequelize.STRING,
+  team: _sequelize.Sequelize.TEXT,
   desc: _sequelize.Sequelize.TEXT
 });
 
@@ -23,21 +24,39 @@ var Vill = exports.Vill = sequelize.define('vill', {
 });
 
 var Person = exports.Person = sequelize.define('person', {
-  vill_id: _sequelize.Sequelize.INTEGER,
+  province: _sequelize.Sequelize.STRING,
+  city: _sequelize.Sequelize.STRING,
+  county: _sequelize.Sequelize.STRING,
+  town: _sequelize.Sequelize.STRING,
+  vill: _sequelize.Sequelize.STRING,
+  family: _sequelize.Sequelize.STRING,
+  person: _sequelize.Sequelize.STRING,
   icon: _sequelize.Sequelize.INTEGER,
   name: _sequelize.Sequelize.STRING,
-  host_id: _sequelize.Sequelize.INTEGER,
-  nation: _sequelize.Sequelize.STRING,
-  birthday: _sequelize.Sequelize.STRING,
+  sex: _sequelize.Sequelize.STRING,
+  number: _sequelize.Sequelize.STRING,
+  count: _sequelize.Sequelize.STRING,
   role: _sequelize.Sequelize.STRING,
-  health: _sequelize.Sequelize.STRING,
+  nation: _sequelize.Sequelize.STRING,
   culture: _sequelize.Sequelize.STRING,
-  tel: _sequelize.Sequelize.STRING,
-  political: _sequelize.Sequelize.STRING,
-  property: _sequelize.Sequelize.STRING,
+  school: _sequelize.Sequelize.STRING,
+  health: _sequelize.Sequelize.STRING,
+  work: _sequelize.Sequelize.STRING,
+  labour: _sequelize.Sequelize.STRING,
+  labour_time: _sequelize.Sequelize.STRING,
+  medical_care: _sequelize.Sequelize.STRING,
+  vill_insur: _sequelize.Sequelize.STRING,
+  town_insur: _sequelize.Sequelize.STRING,
+  tp_property: _sequelize.Sequelize.STRING,
+  poor_property: _sequelize.Sequelize.STRING,
   reason: _sequelize.Sequelize.STRING,
-  tp_year: _sequelize.Sequelize.STRING,
-  remark: _sequelize.Sequelize.TEXT
+  income: _sequelize.Sequelize.STRING,
+  tel: _sequelize.Sequelize.STRING,
+  bank: _sequelize.Sequelize.STRING,
+  bank_number: _sequelize.Sequelize.STRING,
+
+  political: _sequelize.Sequelize.STRING,
+  tp_year: _sequelize.Sequelize.STRING
 });
 
 var Plan = exports.Plan = sequelize.define('plan', {

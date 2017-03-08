@@ -32,7 +32,7 @@ export let Person = sequelize.define('person', {
   role: Sequelize.STRING,
   nation: Sequelize.STRING,
   culture: Sequelize.STRING,
-  school: Sequelize.sTRING,
+  school: Sequelize.STRING,
   health: Sequelize.STRING,
   work: Sequelize.STRING,
   labour: Sequelize.STRING,
@@ -46,7 +46,10 @@ export let Person = sequelize.define('person', {
   income: Sequelize.STRING,
   tel: Sequelize.STRING,
   bank: Sequelize.STRING,
-  bank_number: Sequelize.STRING
+  bank_number: Sequelize.STRING,
+
+  political: Sequelize.STRING,
+  tp_year: Sequelize.STRING
 });
 
 export let Plan = sequelize.define('plan', {

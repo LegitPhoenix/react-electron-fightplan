@@ -47,7 +47,10 @@ let Person = sequelize.define('person', {
   income: Sequelize.STRING,
   tel: Sequelize.STRING,
   bank: Sequelize.STRING,
-  bank_number: Sequelize.STRING
+  bank_number: Sequelize.STRING,
+
+  political: Sequelize.STRING,
+  tp_year: Sequelize.STRING
 });
 
 let Plan = sequelize.define('plan', {
@@ -106,6 +109,8 @@ Person.sync({force: true}).then(() => {
   var data = require('fs').readFileSync('data.json', 'utf-8')
   var persons = JSON.parse(data);
   persons.map(person => {
+    person.tp_year = 2016 + parseInt(Math.random() * 4) + '';
+    person.political = ['中共党员', '群众'][parseInt(Math.random() * 2)]
     Person.create(person);
   });
 });

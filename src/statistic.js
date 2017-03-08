@@ -35,20 +35,20 @@ class Menu extends React.Component {
               <ul>
                 <li><a href="javascript:void(0);" onClick={() => {
                   var title = '全乡贫困户基本情况';
-                  var heads = ['村别', '贫困户数', '一般贫困户', '低保户', '一般疾病', '大病', '残疾', '中共党员', '文盲', '小学', '初中', '高中', '大专以上'];
+                  var heads = ['村别', '贫困户数', '一般贫困户', '低保户', '健康', '长期慢性病', '残疾', '中共党员', '文盲或半文盲', '学龄前儿童', '小学', '初中', '高中'];
                   var conds = [
                         {},
-                        {property: '一般贫困户'},
-                        {property: '低保户'},
-                        {health: '一般疾病'},
-                        {health: '大病'},
+                        {poor_property: '一般贫困户'},
+                        {poor_property: '低保户'},
+                        {health: '健康'},
+                        {health: '长期慢性病'},
                         {health: '残疾'},
                         {political: '中共党员'},
-                        {culture: '文盲'},
+                        {culture: '文盲或半文盲'},
+                        {culture: '学龄前儿童'},
                         {culture: '小学'},
                         {culture: '初中'},
-                        {culture: '高中'},
-                        {culture: '大专以上'}
+                        {culture: '高中'}
                   ];
                   this.queryTown(title, heads, conds, town.id);
                 }}>全乡贫困户基本情况</a></li>
@@ -88,8 +88,8 @@ class Menu extends React.Component {
                   var heads = ['村别', '贫困户数', '一般贫困户', '低保户', '一般疾病', '大病', '残疾', '中共党员', '文盲', '小学', '初中', '高中', '大专以上'];
                   var conds = [
                         {},
-                        {property: '一般贫困户'},
-                        {property: '低保户'},
+                        {poor_property: '一般贫困户'},
+                        {poor_property: '低保户'},
                         {health: '一般疾病'},
                         {health: '大病'},
                         {health: '残疾'},
@@ -104,20 +104,20 @@ class Menu extends React.Component {
                 }}>全乡总体劳务输出汇总</a></li>
                 <li><a href="javascript:void(0);" onClick={() => {
                   var title = '全乡贫困户基本情况';
-                  var heads = ['村别', '贫困户数', '一般贫困户', '低保户', '一般疾病', '大病', '残疾', '中共党员', '文盲', '小学', '初中', '高中', '大专以上'];
+                  var heads = ['村别', '贫困户数', '一般贫困户', '低保户', '健康', '长期慢性病', '残疾', '中共党员', '文盲或半文盲', '学龄前儿童', '初中', '高中'];
                   var conds = [
                         {},
-                        {property: '一般贫困户'},
-                        {property: '低保户'},
-                        {health: '一般疾病'},
-                        {health: '大病'},
+                        {poor_property: '一般贫困户'},
+                        {poor_property: '低保户'},
+                        {health: '健康'},
+                        {health: '长期慢性病'},
                         {health: '残疾'},
                         {political: '中共党员'},
-                        {culture: '文盲'},
+                        {culture: '文盲或半文盲'},
+                        {culture: '学龄前儿童'},
                         {culture: '小学'},
                         {culture: '初中'},
-                        {culture: '高中'},
-                        {culture: '大专以上'}
+                        {culture: '高中'}
                   ];
                   this.queryTown(title, heads, conds, town.id);
                 }}>全乡总体收入情况汇总</a></li>
@@ -127,10 +127,10 @@ class Menu extends React.Component {
                   if(vill.town_id == town.id) return (
                     <Panel header={vill.name} eventKey={vill.id} key={vill.id}>
                       <ul>
-                        <li><a href="javascript:void(0);">2016 年预计脱贫名单</a></li>
-                        <li><a href="javascript:void(0);">2017 年预计脱贫名单</a></li>
-                        <li><a href="javascript:void(0);">2018 年预计脱贫名单</a></li>
-                        <li><a href="javascript:void(0);">2019 年预计脱贫名单</a></li>
+                        <li><a href="javascript:void(0);" onClick={this.tpList.bind(this, vill.name, '2016')}>2016 年预计脱贫名单</a></li>
+                        <li><a href="javascript:void(0);" onClick={this.tpList.bind(this, vill.name, '2017')}>2017 年预计脱贫名单</a></li>
+                        <li><a href="javascript:void(0);" onClick={this.tpList.bind(this, vill.name, '2018')}>2018 年预计脱贫名单</a></li>
+                        <li><a href="javascript:void(0);" onClick={this.tpList.bind(this, vill.name, '2019')}>2019 年预计脱贫名单</a></li>
                       </ul>
                     </Panel>
                   );
@@ -157,7 +157,7 @@ class Menu extends React.Component {
         var row = [vill.name];
         conds.map(cond => {
           p = p.then(() => {
-            cond.vill_id = vill.id;
+            cond.vill = vill.name;
             return Person.findAll({where: cond});
           }).then(data => {
             row.push(data.length);
@@ -171,6 +171,26 @@ class Menu extends React.Component {
         page.refresh();
       });
     });  
+  }
+
+  tpList(vill, year) {
+    var page = this.props.page;
+    page.type = 1;
+    page.data = {
+      title: year + '预计脱贫名单',
+      heads: ['编号', '姓名', '村别', '预计脱贫年份'],
+      rows: []
+    };
+
+    Person.findAll({where: {
+      vill: vill,
+      tp_year: year
+    }}).then(persons => {
+      persons.forEach((person, index) => {
+        page.data.rows.push([index + 1 + '', person.name, person.vill, person.tp_year]);
+      });
+      page.refresh();
+    });
   }
 
 }

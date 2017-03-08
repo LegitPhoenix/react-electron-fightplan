@@ -83,8 +83,8 @@ var Menu = function (_React$Component) {
                     'a',
                     { href: 'javascript:void(0);', onClick: function onClick() {
                         var title = '全乡贫困户基本情况';
-                        var heads = ['村别', '贫困户数', '一般贫困户', '低保户', '一般疾病', '大病', '残疾', '中共党员', '文盲', '小学', '初中', '高中', '大专以上'];
-                        var conds = [{}, { property: '一般贫困户' }, { property: '低保户' }, { health: '一般疾病' }, { health: '大病' }, { health: '残疾' }, { political: '中共党员' }, { culture: '文盲' }, { culture: '小学' }, { culture: '初中' }, { culture: '高中' }, { culture: '大专以上' }];
+                        var heads = ['村别', '贫困户数', '一般贫困户', '低保户', '健康', '长期慢性病', '残疾', '中共党员', '文盲或半文盲', '学龄前儿童', '小学', '初中', '高中'];
+                        var conds = [{}, { poor_property: '一般贫困户' }, { poor_property: '低保户' }, { health: '健康' }, { health: '长期慢性病' }, { health: '残疾' }, { political: '中共党员' }, { culture: '文盲或半文盲' }, { culture: '学龄前儿童' }, { culture: '小学' }, { culture: '初中' }, { culture: '高中' }];
                         _this3.queryTown(title, heads, conds, town.id);
                       } },
                     '\u5168\u4E61\u8D2B\u56F0\u6237\u57FA\u672C\u60C5\u51B5'
@@ -126,7 +126,7 @@ var Menu = function (_React$Component) {
                     { href: 'javascript:void(0);', onClick: function onClick() {
                         var title = '全乡贫困户基本情况';
                         var heads = ['村别', '贫困户数', '一般贫困户', '低保户', '一般疾病', '大病', '残疾', '中共党员', '文盲', '小学', '初中', '高中', '大专以上'];
-                        var conds = [{}, { property: '一般贫困户' }, { property: '低保户' }, { health: '一般疾病' }, { health: '大病' }, { health: '残疾' }, { political: '中共党员' }, { culture: '文盲' }, { culture: '小学' }, { culture: '初中' }, { culture: '高中' }, { culture: '大专以上' }];
+                        var conds = [{}, { poor_property: '一般贫困户' }, { poor_property: '低保户' }, { health: '一般疾病' }, { health: '大病' }, { health: '残疾' }, { political: '中共党员' }, { culture: '文盲' }, { culture: '小学' }, { culture: '初中' }, { culture: '高中' }, { culture: '大专以上' }];
                         _this3.queryTown(title, heads, conds, town.id);
                       } },
                     '\u5168\u4E61\u603B\u4F53\u52B3\u52A1\u8F93\u51FA\u6C47\u603B'
@@ -139,8 +139,8 @@ var Menu = function (_React$Component) {
                     'a',
                     { href: 'javascript:void(0);', onClick: function onClick() {
                         var title = '全乡贫困户基本情况';
-                        var heads = ['村别', '贫困户数', '一般贫困户', '低保户', '一般疾病', '大病', '残疾', '中共党员', '文盲', '小学', '初中', '高中', '大专以上'];
-                        var conds = [{}, { property: '一般贫困户' }, { property: '低保户' }, { health: '一般疾病' }, { health: '大病' }, { health: '残疾' }, { political: '中共党员' }, { culture: '文盲' }, { culture: '小学' }, { culture: '初中' }, { culture: '高中' }, { culture: '大专以上' }];
+                        var heads = ['村别', '贫困户数', '一般贫困户', '低保户', '健康', '长期慢性病', '残疾', '中共党员', '文盲或半文盲', '学龄前儿童', '初中', '高中'];
+                        var conds = [{}, { poor_property: '一般贫困户' }, { poor_property: '低保户' }, { health: '健康' }, { health: '长期慢性病' }, { health: '残疾' }, { political: '中共党员' }, { culture: '文盲或半文盲' }, { culture: '学龄前儿童' }, { culture: '小学' }, { culture: '初中' }, { culture: '高中' }];
                         _this3.queryTown(title, heads, conds, town.id);
                       } },
                     '\u5168\u4E61\u603B\u4F53\u6536\u5165\u60C5\u51B5\u6C47\u603B'
@@ -162,7 +162,7 @@ var Menu = function (_React$Component) {
                         null,
                         _react2.default.createElement(
                           'a',
-                          { href: 'javascript:void(0);' },
+                          { href: 'javascript:void(0);', onClick: _this3.tpList.bind(_this3, vill.name, '2016') },
                           '2016 \u5E74\u9884\u8BA1\u8131\u8D2B\u540D\u5355'
                         )
                       ),
@@ -171,7 +171,7 @@ var Menu = function (_React$Component) {
                         null,
                         _react2.default.createElement(
                           'a',
-                          { href: 'javascript:void(0);' },
+                          { href: 'javascript:void(0);', onClick: _this3.tpList.bind(_this3, vill.name, '2017') },
                           '2017 \u5E74\u9884\u8BA1\u8131\u8D2B\u540D\u5355'
                         )
                       ),
@@ -180,7 +180,7 @@ var Menu = function (_React$Component) {
                         null,
                         _react2.default.createElement(
                           'a',
-                          { href: 'javascript:void(0);' },
+                          { href: 'javascript:void(0);', onClick: _this3.tpList.bind(_this3, vill.name, '2018') },
                           '2018 \u5E74\u9884\u8BA1\u8131\u8D2B\u540D\u5355'
                         )
                       ),
@@ -189,7 +189,7 @@ var Menu = function (_React$Component) {
                         null,
                         _react2.default.createElement(
                           'a',
-                          { href: 'javascript:void(0);' },
+                          { href: 'javascript:void(0);', onClick: _this3.tpList.bind(_this3, vill.name, '2019') },
                           '2019 \u5E74\u9884\u8BA1\u8131\u8D2B\u540D\u5355'
                         )
                       )
@@ -220,7 +220,7 @@ var Menu = function (_React$Component) {
           var row = [vill.name];
           conds.map(function (cond) {
             p = p.then(function () {
-              cond.vill_id = vill.id;
+              cond.vill = vill.name;
               return _models.Person.findAll({ where: cond });
             }).then(function (data) {
               row.push(data.length);
@@ -233,6 +233,27 @@ var Menu = function (_React$Component) {
         p.then(function () {
           page.refresh();
         });
+      });
+    }
+  }, {
+    key: 'tpList',
+    value: function tpList(vill, year) {
+      var page = this.props.page;
+      page.type = 1;
+      page.data = {
+        title: year + '预计脱贫名单',
+        heads: ['编号', '姓名', '村别', '预计脱贫年份'],
+        rows: []
+      };
+
+      _models.Person.findAll({ where: {
+          vill: vill,
+          tp_year: year
+        } }).then(function (persons) {
+        persons.forEach(function (person, index) {
+          page.data.rows.push(['' + index, person.name, person.vill, person.tp_year]);
+        });
+        page.refresh();
       });
     }
   }]);

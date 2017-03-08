@@ -58,7 +58,7 @@ var Menu = function (_React$Component) {
             _this2.state.persons = persons.map(function (person) {
               return {
                 id: person.id,
-                vill_id: person.vill_id,
+                vill: person.vill,
                 name: person.name
               };
             });
@@ -93,7 +93,7 @@ var Menu = function (_React$Component) {
                       'ul',
                       null,
                       _this3.state.persons.map(function (person) {
-                        if (person.vill_id == vill.id) return _react2.default.createElement(
+                        if (person.vill == vill.name) return _react2.default.createElement(
                           'li',
                           { key: person.id },
                           _react2.default.createElement(
@@ -119,13 +119,7 @@ var Menu = function (_React$Component) {
 
       _models.Person.findOne({ where: { id: id } }).then(function (person) {
         _this4.props.page.cur = person;
-        _models.Vill.findOne({ where: { id: person.vill_id } }).then(function (vill) {
-          person.vill = vill.name;
-          _models.Town.findOne({ where: { id: vill.town_id } }).then(function (town) {
-            person.town = town.name;
-            _this4.props.page.refresh();
-          });
-        });
+        _this4.props.page.refresh();
       });
     }
   }]);
@@ -179,12 +173,12 @@ var Content = function (_React$Component2) {
             _react2.default.createElement(
               'div',
               { className: 'col-md-2' },
-              '\u6C11\u65CF\uFF1A'
+              '\u6027\u522B\uFF1A'
             ),
             _react2.default.createElement(
               'div',
               { className: 'col-md-2' },
-              this.state.cur.nation
+              this.state.cur.sex
             )
           ),
           _react2.default.createElement(
@@ -193,23 +187,148 @@ var Content = function (_React$Component2) {
             _react2.default.createElement(
               'div',
               { className: 'col-md-2' },
-              '\u6240\u5728\u4E61\uFF1A'
+              '\u6C11\u65CF\uFF1A'
             ),
             _react2.default.createElement(
               'div',
               { className: 'col-md-2' },
-              this.state.cur.town
+              this.state.cur.nation
             ),
             _react2.default.createElement('div', { className: 'col-md-1' }),
             _react2.default.createElement(
               'div',
               { className: 'col-md-2' },
-              '\u6240\u5728\u6751\uFF1A'
+              '\u4E0E\u6237\u4E3B\u5173\u7CFB\uFF1A'
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-2' },
+              this.state.cur.role
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'row' },
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-2' },
+              '\u7701\u4EFD\uFF1A'
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-2' },
+              this.state.cur.province
+            ),
+            _react2.default.createElement('div', { className: 'col-md-1' }),
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-2' },
+              '\u57CE\u5E02\uFF1A'
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-2' },
+              this.state.cur.city
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'row' },
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-2' },
+              '\u53BF\uFF1A'
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-2' },
+              this.state.cur.county
+            ),
+            _react2.default.createElement('div', { className: 'col-md-1' }),
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-2' },
+              '\u9547\uFF1A'
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-2' },
+              this.state.cur.town
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'row' },
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-2' },
+              '\u884C\u653F\u6751\uFF1A'
             ),
             _react2.default.createElement(
               'div',
               { className: 'col-md-2' },
               this.state.cur.vill
+            ),
+            _react2.default.createElement('div', { className: 'col-md-1' }),
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-2' },
+              '\u6237\u7F16\u53F7\uFF1A'
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-2' },
+              this.state.cur.family
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'row' },
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-2' },
+              '\u4EBA\u7F16\u53F7\uFF1A'
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-2' },
+              this.state.cur.person
+            ),
+            _react2.default.createElement('div', { className: 'col-md-1' }),
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-2' },
+              '\u4EBA\u6570\uFF1A'
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-2' },
+              this.state.cur.count
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'row' },
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-2' },
+              '\u6587\u5316\u7A0B\u5EA6\uFF1A'
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-2' },
+              this.state.cur.culture
+            ),
+            _react2.default.createElement('div', { className: 'col-md-1' }),
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-2' },
+              '\u5728\u6821\u751F\u72B6\u51B5\uFF1A'
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-2' },
+              this.state.cur.school
             )
           ),
           _react2.default.createElement(
@@ -229,12 +348,87 @@ var Content = function (_React$Component2) {
             _react2.default.createElement(
               'div',
               { className: 'col-md-2' },
-              '\u6587\u5316\u7A0B\u5EA6\uFF1A'
+              '\u52B3\u52A8\u80FD\u529B\uFF1A'
             ),
             _react2.default.createElement(
               'div',
               { className: 'col-md-2' },
-              this.state.cur.culture
+              this.state.cur.work
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'row' },
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-2' },
+              '\u52B3\u5DE5\u72B6\u51B5\uFF1A'
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-2' },
+              this.state.cur.labour
+            ),
+            _react2.default.createElement('div', { className: 'col-md-1' }),
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-2' },
+              '\u52B3\u5DE5\u65F6\u95F4\uFF1A'
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-2' },
+              this.state.cur.labour_time
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'row' },
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-2' },
+              '\u8131\u8D2B\u5C5E\u6027\uFF1A'
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-2' },
+              this.state.cur.tp_property
+            ),
+            _react2.default.createElement('div', { className: 'col-md-1' }),
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-2' },
+              '\u8D2B\u56F0\u6237\u5C5E\u6027\uFF1A'
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-2' },
+              this.state.cur.poor_property
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'row' },
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-2' },
+              '\u81F4\u8D2B\u539F\u56E0\uFF1A'
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-2' },
+              this.state.cur.reason
+            ),
+            _react2.default.createElement('div', { className: 'col-md-1' }),
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-2' },
+              '\u4EBA\u5747\u6536\u5165\uFF1A'
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-2' },
+              this.state.cur.income
             )
           ),
           _react2.default.createElement(
@@ -254,12 +448,12 @@ var Content = function (_React$Component2) {
             _react2.default.createElement(
               'div',
               { className: 'col-md-2' },
-              '\u653F\u6CBB\u9762\u8C8C\uFF1A'
+              '\u65B0\u519C\u5408\u60C5\u51B5\uFF1A'
             ),
             _react2.default.createElement(
               'div',
               { className: 'col-md-2' },
-              this.state.cur.political
+              this.state.cur.medical_care
             )
           ),
           _react2.default.createElement(
@@ -268,14 +462,24 @@ var Content = function (_React$Component2) {
             _react2.default.createElement(
               'div',
               { className: 'col-md-2' },
-              '\u8D2B\u56F0\u6237\u5C5E\u6027\uFF1A'
+              '\u519C\u6751\u517B\u8001\u4FDD\u9669\uFF1A'
             ),
             _react2.default.createElement(
               'div',
               { className: 'col-md-2' },
-              this.state.cur.property
+              this.state.cur.vill_insur
             ),
-            _react2.default.createElement('div', { className: 'col-md-1' })
+            _react2.default.createElement('div', { className: 'col-md-1' }),
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-2' },
+              '\u57CE\u9547\u517B\u8001\u4FDD\u9669\uFF1A'
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-2' },
+              this.state.cur.town_insur
+            )
           ),
           _react2.default.createElement(
             'div',
@@ -283,14 +487,24 @@ var Content = function (_React$Component2) {
             _react2.default.createElement(
               'div',
               { className: 'col-md-2' },
-              '\u81F4\u8D2B\u539F\u56E0\uFF1A'
+              '\u5F00\u6237\u94F6\u884C\uFF1A'
             ),
             _react2.default.createElement(
               'div',
               { className: 'col-md-2' },
-              this.state.cur.reason
+              this.state.cur.bank
             ),
-            _react2.default.createElement('div', { className: 'col-md-1' })
+            _react2.default.createElement('div', { className: 'col-md-1' }),
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-2' },
+              '\u94F6\u884C\u5361\u53F7\uFF1A'
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-2' },
+              this.state.cur.bank_number
+            )
           ),
           _react2.default.createElement(
             'div',
@@ -298,27 +512,12 @@ var Content = function (_React$Component2) {
             _react2.default.createElement(
               'div',
               { className: 'col-md-2' },
-              '\u9884\u8BA1\u8131\u8D2B\u5E74\u4EFD\uFF1A'
+              '\u8BC1\u4EF6\u53F7\u7801\uFF1A'
             ),
             _react2.default.createElement(
               'div',
               { className: 'col-md-2' },
-              this.state.cur.tp_year
-            ),
-            _react2.default.createElement('div', { className: 'col-md-1' })
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'row' },
-            _react2.default.createElement(
-              'div',
-              { className: 'col-md-2' },
-              '\u5907\u6CE8\uFF1A'
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'col-md-2' },
-              this.state.cur.remark
+              this.state.cur.number
             ),
             _react2.default.createElement('div', { className: 'col-md-1' })
           )
