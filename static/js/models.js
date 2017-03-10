@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Plan = exports.Person = exports.Vill = exports.Town = undefined;
+exports.Article = exports.Plan = exports.Person = exports.Vill = exports.Town = undefined;
 
 var _sequelize = require('sequelize');
 
@@ -56,16 +56,18 @@ var Person = exports.Person = sequelize.define('person', {
   bank_number: _sequelize.Sequelize.STRING,
 
   political: _sequelize.Sequelize.STRING,
-  tp_year: _sequelize.Sequelize.STRING
+  tp_year: _sequelize.Sequelize.STRING,
+  export: _sequelize.Sequelize.STRING,
+  house: _sequelize.Sequelize.STRING
 });
 
 var Plan = exports.Plan = sequelize.define('plan', {
   person_id: _sequelize.Sequelize.INTEGER,
+  name: _sequelize.Sequelize.STRING,
   xiangmuneirongjiguimo: _sequelize.Sequelize.TEXT,
   daikuan: _sequelize.Sequelize.TEXT,
   zichouzijin: _sequelize.Sequelize.TEXT,
   qita: _sequelize.Sequelize.TEXT,
-  laowushuchu: _sequelize.Sequelize.TEXT,
   weifanggaizaojihua: _sequelize.Sequelize.TEXT,
   qitatuopinxiangmu: _sequelize.Sequelize.TEXT,
   beizhu: _sequelize.Sequelize.TEXT,
@@ -87,9 +89,13 @@ var Plan = exports.Plan = sequelize.define('plan', {
   yiliaozhichu: _sequelize.Sequelize.TEXT,
   hunjiazhichu: _sequelize.Sequelize.TEXT,
   qitazhichu: _sequelize.Sequelize.TEXT,
-
   renjunshouru: _sequelize.Sequelize.TEXT,
-
   nianfen: _sequelize.Sequelize.STRING
 
+});
+
+var Article = exports.Article = sequelize.define('article', {
+  title: _sequelize.Sequelize.STRING,
+  date: _sequelize.Sequelize.STRING,
+  content: _sequelize.Sequelize.TEXT
 });

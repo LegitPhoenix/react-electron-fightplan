@@ -2,7 +2,6 @@ var Sequelize = require('sequelize');
 
 let sequelize = new Sequelize(null, null, null, {dialect: 'sqlite', storage: 'data.db', logging: false});
 
-
 let Town = sequelize.define('town', {
   name: Sequelize.STRING,
   team: Sequelize.TEXT,
@@ -50,16 +49,18 @@ let Person = sequelize.define('person', {
   bank_number: Sequelize.STRING,
 
   political: Sequelize.STRING,
-  tp_year: Sequelize.STRING
+  tp_year: Sequelize.STRING,
+  export: Sequelize.STRING,
+  house: Sequelize.STRING
 });
 
 let Plan = sequelize.define('plan', {
   person_id: Sequelize.INTEGER,
+  name: Sequelize.STRING,
   xiangmuneirongjiguimo: Sequelize.TEXT,
   daikuan: Sequelize.TEXT,
   zichouzijin: Sequelize.TEXT,
   qita: Sequelize.TEXT,
-  laowushuchu: Sequelize.TEXT,
   weifanggaizaojihua: Sequelize.TEXT,
   qitatuopinxiangmu: Sequelize.TEXT,
   beizhu: Sequelize.TEXT,
@@ -110,17 +111,20 @@ Person.sync({force: true}).then(() => {
   var persons = JSON.parse(data);
   persons.map(person => {
     person.tp_year = 2016 + parseInt(Math.random() * 4) + '';
-    person.political = ['中共党员', '群众'][parseInt(Math.random() * 2)]
+    person.political = ['中共党员', '群众'][1]
     Person.create(person);
   });
 });
 
 Plan.sync({force: true});
 
+let Article = sequelize.define('article', {
+  title: Sequelize.STRING,
+  date: Sequelize.STRING,
+  content: Sequelize.TEXT
+});
 
-
-
-
+Article.sync({froce: true});
 
 
 

@@ -49,16 +49,18 @@ export let Person = sequelize.define('person', {
   bank_number: Sequelize.STRING,
 
   political: Sequelize.STRING,
-  tp_year: Sequelize.STRING
+  tp_year: Sequelize.STRING,
+  export: Sequelize.STRING,
+  house: Sequelize.STRING
 });
 
 export let Plan = sequelize.define('plan', {
   person_id: Sequelize.INTEGER,
+  name: Sequelize.STRING,
   xiangmuneirongjiguimo: Sequelize.TEXT,
   daikuan: Sequelize.TEXT,
   zichouzijin: Sequelize.TEXT,
   qita: Sequelize.TEXT,
-  laowushuchu: Sequelize.TEXT,
   weifanggaizaojihua: Sequelize.TEXT,
   qitatuopinxiangmu: Sequelize.TEXT,
   beizhu: Sequelize.TEXT,
@@ -80,10 +82,16 @@ export let Plan = sequelize.define('plan', {
   yiliaozhichu: Sequelize.TEXT,
   hunjiazhichu: Sequelize.TEXT,
   qitazhichu: Sequelize.TEXT,
-
   renjunshouru: Sequelize.TEXT,
-
   nianfen: Sequelize.STRING
 
 });
+
+export let Article = sequelize.define('article', {
+  title: Sequelize.STRING,
+  date: Sequelize.STRING,
+  content: Sequelize.TEXT
+});
+
+
 

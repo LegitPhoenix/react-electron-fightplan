@@ -1,6 +1,6 @@
 import React from 'react';
 import {PanelGroup, Panel, Button, Table} from 'react-bootstrap';
-import {Town, Vill, Person} from './models.js';
+import {Town, Vill, Person, Plan} from './models.js';
 
 class Menu extends React.Component {
 
@@ -50,7 +50,7 @@ class Menu extends React.Component {
                         {culture: '初中'},
                         {culture: '高中'}
                   ];
-                  this.queryTown(title, heads, conds, town.id);
+                  this.queryPerson(title, heads, conds, town.id);
                 }}>全乡贫困户基本情况</a></li>
                 <li><a href="javascript:void(0);" onClick={() => {
                   var title = '全乡总体预计脱贫计划汇';
@@ -62,7 +62,7 @@ class Menu extends React.Component {
                     {tp_year: '2019'},
                     {}
                   ];
-                  this.queryTown(title, heads, conds, town.id);
+                  this.queryPerson(title, heads, conds, town.id);
                 }}>全乡总体脱贫计划汇总</a></li>
                 <li><a href="javascript:void(0);" onClick={() => {
                   var title = '全乡总体致贫原因汇总';
@@ -81,46 +81,20 @@ class Menu extends React.Component {
                     {reason: '因灾'},
                     {reason: '因婚'}
                   ];
-                  this.queryTown(title, heads, conds, town.id);
+                  this.queryPerson(title, heads, conds, town.id);
                 }}>全乡总体致贫原因汇总</a></li>
                 <li><a href="javascript:void(0);" onClick={() => {
-                  var title = '全乡贫困户基本情况';
-                  var heads = ['村别', '贫困户数', '一般贫困户', '低保户', '一般疾病', '大病', '残疾', '中共党员', '文盲', '小学', '初中', '高中', '大专以上'];
-                  var conds = [
-                        {},
-                        {poor_property: '一般贫困户'},
-                        {poor_property: '低保户'},
-                        {health: '一般疾病'},
-                        {health: '大病'},
-                        {health: '残疾'},
-                        {political: '中共党员'},
-                        {culture: '文盲'},
-                        {culture: '小学'},
-                        {culture: '初中'},
-                        {culture: '高中'},
-                        {culture: '大专以上'}
+                  let title = '全乡总体劳务输出汇总';
+                  let heads = ['村别', '临时外出', '常年外出', '翻房', '维修'];
+                  let rows = [];
+                  let conds = [
+                    {export: '临时外出'},
+                    {export: '常年外出'},
+                    {house: '翻房'},
+                    {house: '维修'}
                   ];
-                  this.queryTown(title, heads, conds, town.id);
+                  this.queryPerson(title, heads, conds, town.id);
                 }}>全乡总体劳务输出汇总</a></li>
-                <li><a href="javascript:void(0);" onClick={() => {
-                  var title = '全乡贫困户基本情况';
-                  var heads = ['村别', '贫困户数', '一般贫困户', '低保户', '健康', '长期慢性病', '残疾', '中共党员', '文盲或半文盲', '学龄前儿童', '初中', '高中'];
-                  var conds = [
-                        {},
-                        {poor_property: '一般贫困户'},
-                        {poor_property: '低保户'},
-                        {health: '健康'},
-                        {health: '长期慢性病'},
-                        {health: '残疾'},
-                        {political: '中共党员'},
-                        {culture: '文盲或半文盲'},
-                        {culture: '学龄前儿童'},
-                        {culture: '小学'},
-                        {culture: '初中'},
-                        {culture: '高中'}
-                  ];
-                  this.queryTown(title, heads, conds, town.id);
-                }}>全乡总体收入情况汇总</a></li>
               </ul>
               <PanelGroup accordion>
                 {this.state.vills.map(vill => {
@@ -143,7 +117,7 @@ class Menu extends React.Component {
     );
   }
 
-  queryTown(title, heads, conds, town_id) {
+  queryPerson(title, heads, conds, town_id) {
     var page = this.props.page;
     page.type = 1;
     page.data = {
@@ -159,6 +133,36 @@ class Menu extends React.Component {
           p = p.then(() => {
             cond.vill = vill.name;
             return Person.findAll({where: cond});
+          }).then(data => {
+            row.push(data.length);
+          });
+        });
+        p.then(data => {
+          page.data.rows.push(row);
+        });
+      });
+      p.then(() => {
+        page.refresh();
+      });
+    });  
+  }
+
+  queryPlan(title, heads, conds, town_id) {
+    var page = this.props.page;
+    page.type = 1;
+    page.data = {
+      title: title,
+      heads: heads,
+      rows: []
+    }
+    Vill.findAll({where: {town_id: town_id}}).then(vills => {
+      var p = new Promise(f => f());
+      vills.map(vill => {
+        var row = [vill.name];
+        conds.map(cond => {
+          p = p.then(() => {
+            cond.vill = vill.name;
+            return Plan.findAll({where: cond});
           }).then(data => {
             row.push(data.length);
           });
@@ -191,6 +195,12 @@ class Menu extends React.Component {
       });
       page.refresh();
     });
+  }
+
+  zjList(vill, year) {
+    var page = this.props.page;
+    page.type = 1;
+    page.data = {};
   }
 
 }
@@ -287,3 +297,18 @@ export default class Statistic extends React.Component {
 
 
 
+/**
+<li><a href="javascript:void(0);" onClick={() => {
+                  let title = '全乡总体收入情况汇总';
+                  let heads = ['村别', '户主姓名', '打工收入', '年领取低保金', '在校生资助金', '领取捐助资金', '生产经营性收入', '财产性收入', '其他收入', '合计', '生产经营性支出', '医疗支出', '婚嫁支出', '其他支出', '合计'];
+                  let rows = [];
+                  let conds = [
+                    {laowushuchu: '临时外出'},
+                    {laowushuchu: '常年外出'},
+                    {weifanggaizaojihua: '翻房'},
+                    {weifanggaizaojihua: '维修'}
+                  ];
+                  this.queryPlan(title, heads, conds, town.id);
+                }}>全乡总体收入情况汇总</a></li>
+
+**/
