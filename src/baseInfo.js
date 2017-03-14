@@ -40,7 +40,7 @@ class Menu extends React.Component {
           {this.state.towns.map(town => (
             <Panel header={town.name} eventKey={town.id} key={town.id}>
               <ul>
-                <li><a href="javascript:void(0);" onClick={this.getTownInfo.bind(this, town.id, 0)}>{town.name}基本信息介绍</a></li>
+                <li><a href="javascript:void(0);" onClick={this.getTownInfo.bind(this, town.id, 0)}>{town.name}情介绍</a></li>
                 <li><a href="javascript:void(0);" onClick={this.getTownInfo.bind(this, town.id, 1)}>{town.name}班子介绍</a></li>
               </ul>
               <hr />

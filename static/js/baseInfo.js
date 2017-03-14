@@ -92,7 +92,7 @@ var Menu = function (_React$Component) {
                     'a',
                     { href: 'javascript:void(0);', onClick: _this3.getTownInfo.bind(_this3, town.id, 0) },
                     town.name,
-                    '\u57FA\u672C\u4FE1\u606F\u4ECB\u7ECD'
+                    '\u60C5\u4ECB\u7ECD'
                   )
                 ),
                 _react2.default.createElement(

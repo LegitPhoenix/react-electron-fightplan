@@ -58,7 +58,7 @@ export class Footer extends React.Component {
   }
   
   switchHomePage() {
-    this.props.page.setTitle('小徳营子乡精准脱贫攻坚作战计划');
+    this.props.page.setTitle('小德营子乡精准脱贫攻坚作战计划');
     this.props.page.setContent(homePage);
   }
 

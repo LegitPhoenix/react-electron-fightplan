@@ -5,7 +5,7 @@ import {Header, Footer, Container} from './static/js/frame.js';
 
 class App extends React.Component {
   render() {
-    var page = {}
+    var page = {title: '小德营子乡精准脱贫攻坚作战计划'}
     return (
       <div>
         <Header page={page} />

@@ -30,7 +30,7 @@ var App = function (_React$Component) {
   _createClass(App, [{
     key: 'render',
     value: function render() {
-      var page = {};
+      var page = { title: '小德营子乡精准脱贫攻坚作战计划' };
       return _react2.default.createElement(
         'div',
         null,
