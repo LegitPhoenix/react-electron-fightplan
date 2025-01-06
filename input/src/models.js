@@ -3,94 +3,94 @@ import {Sequelize} from 'sequelize';
 let sequelize = new Sequelize(null, null, null, {dialect: 'sqlite', storage: '../data.db', logging: false});
 
 export let Town = sequelize.define('town', {
-  name: Sequelize.STRING,
-  team: Sequelize.TEXT,
-  desc: Sequelize.TEXT
+  name: DataTypes.STRING,
+  team: DataTypes.TEXT,
+  desc: DataTypes.TEXT
 });
 
 export let Vill = sequelize.define('vill', {
-  town_id: Sequelize.INTEGER,
-  name: Sequelize.STRING,
-  desc: Sequelize.TEXT,
-  team: Sequelize.TEXT,
-  remark: Sequelize.TEXT
+  town_id: DataTypes.INTEGER,
+  name: DataTypes.STRING,
+  desc: DataTypes.TEXT,
+  team: DataTypes.TEXT,
+  remark: DataTypes.TEXT
 });
 
 export let Person = sequelize.define('person', {
-  province: Sequelize.STRING,
-  city: Sequelize.STRING,
-  county: Sequelize.STRING,
-  town: Sequelize.STRING,
-  vill: Sequelize.STRING,
-  family: Sequelize.STRING,
-  person: Sequelize.STRING,
-  icon: Sequelize.INTEGER,
-  name: Sequelize.STRING,
-  sex: Sequelize.STRING,
-  number: Sequelize.STRING,
-  count: Sequelize.STRING,
-  role: Sequelize.STRING,
-  nation: Sequelize.STRING,
-  culture: Sequelize.STRING,
-  school: Sequelize.STRING,
-  health: Sequelize.STRING,
-  work: Sequelize.STRING,
-  labour: Sequelize.STRING,
-  labour_time: Sequelize.STRING,
-  medical_care: Sequelize.STRING,
-  vill_insur: Sequelize.STRING,
-  town_insur: Sequelize.STRING,
-  tp_property: Sequelize.STRING,
-  poor_property: Sequelize.STRING,
-  reason: Sequelize.STRING,
-  income: Sequelize.STRING,
-  tel: Sequelize.STRING,
-  bank: Sequelize.STRING,
-  bank_number: Sequelize.STRING,
+  province: DataTypes.STRING,
+  city: DataTypes.STRING,
+  county: DataTypes.STRING,
+  town: DataTypes.STRING,
+  vill: DataTypes.STRING,
+  family: DataTypes.STRING,
+  person: DataTypes.STRING,
+  icon: DataTypes.INTEGER,
+  name: DataTypes.STRING,
+  sex: DataTypes.STRING,
+  number: DataTypes.STRING,
+  count: DataTypes.STRING,
+  role: DataTypes.STRING,
+  nation: DataTypes.STRING,
+  culture: DataTypes.STRING,
+  school: DataTypes.STRING,
+  health: DataTypes.STRING,
+  work: DataTypes.STRING,
+  labour: DataTypes.STRING,
+  labour_time: DataTypes.STRING,
+  medical_care: DataTypes.STRING,
+  vill_insur: DataTypes.STRING,
+  town_insur: DataTypes.STRING,
+  tp_property: DataTypes.STRING,
+  poor_property: DataTypes.STRING,
+  reason: DataTypes.STRING,
+  income: DataTypes.STRING,
+  tel: DataTypes.STRING,
+  bank: DataTypes.STRING,
+  bank_number: DataTypes.STRING,
 
-  political: Sequelize.STRING,
-  tp_year: Sequelize.STRING,
-  export: Sequelize.STRING,
-  house: Sequelize.STRING
+  political: DataTypes.STRING,
+  tp_year: DataTypes.STRING,
+  export: DataTypes.STRING,
+  house: DataTypes.STRING
 });
 
 export let Plan = sequelize.define('plan', {
-  person_id: Sequelize.INTEGER,
-  name: Sequelize.STRING,
-  xiangmuneirongjiguimo: Sequelize.TEXT,
-  daikuan: Sequelize.TEXT,
-  zichouzijin: Sequelize.TEXT,
-  qita: Sequelize.TEXT,
-  weifanggaizaojihua: Sequelize.TEXT,
-  qitatuopinxiangmu: Sequelize.TEXT,
-  beizhu: Sequelize.TEXT,
+  person_id: DataTypes.INTEGER,
+  name: DataTypes.STRING,
+  xiangmuneirongjiguimo: DataTypes.TEXT,
+  daikuan: DataTypes.TEXT,
+  zichouzijin: DataTypes.TEXT,
+  qita: DataTypes.TEXT,
+  weifanggaizaojihua: DataTypes.TEXT,
+  qitatuopinxiangmu: DataTypes.TEXT,
+  beizhu: DataTypes.TEXT,
 
-  dagongshouru: Sequelize.TEXT,
-  nianlingqudibaojin: Sequelize.TEXT,
-  zaixiaoshengnianzizhujin: Sequelize.TEXT,
-  lingqujuanzhuzijin: Sequelize.TEXT,
-  shengchanjingyingxingshouru: Sequelize.TEXT,
-  shengtaibuchangjin: Sequelize.TEXT,
-  tudiliuzhuanshouru: Sequelize.TEXT,
-  jihuashengyujin: Sequelize.TEXT,
-  yanglaobaoxianjin: Sequelize.TEXT,
-  caichanxingshouru: Sequelize.TEXT,
-  qitashouru: Sequelize.TEXT,
+  dagongshouru: DataTypes.TEXT,
+  nianlingqudibaojin: DataTypes.TEXT,
+  zaixiaoshengnianzizhujin: DataTypes.TEXT,
+  lingqujuanzhuzijin: DataTypes.TEXT,
+  shengchanjingyingxingshouru: DataTypes.TEXT,
+  shengtaibuchangjin: DataTypes.TEXT,
+  tudiliuzhuanshouru: DataTypes.TEXT,
+  jihuashengyujin: DataTypes.TEXT,
+  yanglaobaoxianjin: DataTypes.TEXT,
+  caichanxingshouru: DataTypes.TEXT,
+  qitashouru: DataTypes.TEXT,
 
-  shengchanjingyingxingzhichu: Sequelize.TEXT,
-  jiaoyuzhichu: Sequelize.TEXT,
-  yiliaozhichu: Sequelize.TEXT,
-  hunjiazhichu: Sequelize.TEXT,
-  qitazhichu: Sequelize.TEXT,
-  renjunshouru: Sequelize.TEXT,
-  nianfen: Sequelize.STRING
+  shengchanjingyingxingzhichu: DataTypes.TEXT,
+  jiaoyuzhichu: DataTypes.TEXT,
+  yiliaozhichu: DataTypes.TEXT,
+  hunjiazhichu: DataTypes.TEXT,
+  qitazhichu: DataTypes.TEXT,
+  renjunshouru: DataTypes.TEXT,
+  nianfen: DataTypes.STRING
 
 });
 
 export let Article = sequelize.define('article', {
-  title: Sequelize.STRING,
-  date: Sequelize.STRING,
-  content: Sequelize.TEXT
+  title: DataTypes.STRING,
+  date: DataTypes.STRING,
+  content: DataTypes.TEXT
 });
 
 
