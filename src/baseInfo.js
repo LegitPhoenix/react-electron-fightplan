@@ -248,7 +248,7 @@ class ArticlePage extends React.Component {
     return (
       <div>
         <h1 style={{textAlign: 'center'}}>{this.props.page.article.title}</h1>
-        <div dangerouslySetInnerHTML={{__html: this.props.page.article.content}}></div>
+        <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.props.page.article.content)}}></div>
       </div>
     );
   }
