@@ -646,6 +646,8 @@ var InfoPage = function (_React$Component2) {
   return InfoPage;
 }(_react2.default.Component);
 
+var DOMPurify = require('dompurify');
+
 var ArticlePage = function (_React$Component3) {
   _inherits(ArticlePage, _React$Component3);
 
@@ -666,7 +668,7 @@ var ArticlePage = function (_React$Component3) {
           { style: { textAlign: 'center' } },
           this.props.page.article.title
         ),
-        _react2.default.createElement('div', { dangerouslySetInnerHTML: { __html: this.props.page.article.content } })
+        _react2.default.createElement('div', { dangerouslySetInnerHTML: { __html: DOMPurify.sanitize(this.props.page.article.content) } })
       );
     }
   }]);
