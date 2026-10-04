@@ -112,7 +112,7 @@ var Content = function (_React$Component2) {
             this.props.article.date
           ),
           _react2.default.createElement('hr', null),
-          _react2.default.createElement('div', { dangerouslySetInnerHTML: { __html: this.props.article.content } })
+          _react2.default.createElement('div', { dangerouslySetInnerHTML: { __html: DOMPurify.sanitize(this.props.article.content) } })
         )
       );
     }
