@@ -42,7 +42,7 @@ class Content extends React.Component {
           <h2 style={{textAlign: 'center'}}>{this.props.article.title}</h2>
           <h3 style={{textAlign: 'center'}}>{this.props.article.date}</h3>
           <hr />
-          <div dangerouslySetInnerHTML={{__html: this.props.article.content}}></div>
+          <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.props.article.content)}}></div>
         </div>
       </div>
     );
@@ -71,7 +71,6 @@ export default class BigNews extends React.Component {
     });
   }
 }
-
 
 
 
