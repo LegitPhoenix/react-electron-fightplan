@@ -128,7 +128,7 @@
             },
             pushItem : function(arr,item){
                 if(this.inArray(arr,item)==-1){
-                    arr.push(item)
+                arr.push(item)
                 }
             },
             trim: function (str) {
@@ -145,10 +145,13 @@
                 });
                 return index;
             },
+            escapeRegExp: function (str) {
+                return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            },
             hasClass: function (element, className) {
                 className = className.replace(/(^[ ]+)|([ ]+$)/g, '').replace(/[ ]{2,}/g, ' ').split(' ');
                 for (var i = 0, ci, cls = element.className; ci = className[i++];) {
-                    if (!new RegExp('\\b' + ci + '\\b', 'i').test(cls)) {
+                    if (!new RegExp('\\b' + this.escapeRegExp(ci) + '\\b', 'i').test(cls)) {
                         return false;
                     }
                 }
@@ -158,7 +161,7 @@
                 if(!elm)return;
                 classNames = this.trim(classNames).replace(/[ ]{2,}/g,' ').split(' ');
                 for(var i = 0,ci,cls = elm.className;ci=classNames[i++];){
-                    if(!new RegExp('\\b' + ci + '\\b').test(cls)){
+                    if(!new RegExp('\\b' + this.escapeRegExp(ci) + '\\b').test(cls)){
                         cls += ' ' + ci;
                     }
                 }
@@ -168,7 +171,7 @@
                 classNames = this.isArray(classNames) ? classNames :
                     this.trim(classNames).replace(/[ ]{2,}/g,' ').split(' ');
                 for(var i = 0,ci,cls = elm.className;ci=classNames[i++];){
-                    cls = cls.replace(new RegExp('\\b' + ci + '\\b'),'')
+                    cls = cls.replace(new RegExp('\\b' + this.escapeRegExp(ci) + '\\b'),'')
                 }
                 cls = this.trim(cls).replace(/[ ]{2,}/g,' ');
                 elm.className = cls;
