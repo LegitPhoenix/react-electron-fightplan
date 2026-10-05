@@ -308,6 +308,9 @@
             })
         }
     };
+    function escapeRegExp(string) {
+        return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }
     uParse = function(selector,opt){
         utils.domReady(function(){
             var contents;
@@ -319,7 +322,7 @@
                 }else if(/^\./.test(selector)){
                     var contents = [];
                     utils.each(document.getElementsByTagName('*'),function(node){
-                        if(node.className && new RegExp('\\b' + selector.replace(/^\./,'') + '\\b','i').test(node.className)){
+                        if(node.className && new RegExp('\\b' + escapeRegExp(selector.replace(/^\./,'')) + '\\b','i').test(node.className)){
                             contents.push(node)
                         }
                     })
