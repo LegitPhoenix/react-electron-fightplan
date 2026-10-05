@@ -148,7 +148,8 @@
             hasClass: function (element, className) {
                 className = className.replace(/(^[ ]+)|([ ]+$)/g, '').replace(/[ ]{2,}/g, ' ').split(' ');
                 for (var i = 0, ci, cls = element.className; ci = className[i++];) {
-                    if (!new RegExp('\\b' + ci + '\\b', 'i').test(cls)) {
+                    var escapedCi = ci.replace(/[\\^$*+?.()|{}\[\]]/g, '\\$&');
+                    if (!new RegExp('\\b' + escapedCi + '\\b', 'i').test(cls)) {
                         return false;
                     }
                 }
@@ -158,7 +159,8 @@
                 if(!elm)return;
                 classNames = this.trim(classNames).replace(/[ ]{2,}/g,' ').split(' ');
                 for(var i = 0,ci,cls = elm.className;ci=classNames[i++];){
-                    if(!new RegExp('\\b' + ci + '\\b').test(cls)){
+                    var escapedCi = ci.replace(/[\\^$*+?.()|{}\[\]]/g, '\\$&');
+                    if(!new RegExp('\\b' + escapedCi + '\\b').test(cls)){
                         cls += ' ' + ci;
                     }
                 }
@@ -168,7 +170,8 @@
                 classNames = this.isArray(classNames) ? classNames :
                     this.trim(classNames).replace(/[ ]{2,}/g,' ').split(' ');
                 for(var i = 0,ci,cls = elm.className;ci=classNames[i++];){
-                    cls = cls.replace(new RegExp('\\b' + ci + '\\b'),'')
+                    var escapedCi = ci.replace(/[\\^$*+?.()|{}\[\]]/g, '\\$&');
+                    cls = cls.replace(new RegExp('\\b' + escapedCi + '\\b'),'')
                 }
                 cls = this.trim(cls).replace(/[ ]{2,}/g,' ');
                 elm.className = cls;
