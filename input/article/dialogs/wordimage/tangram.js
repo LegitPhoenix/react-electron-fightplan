@@ -1056,6 +1056,19 @@ baidu.sio = baidu.sio || {};
  * @param {String} [charset] 编码
  */
 baidu.sio._createScriptTag = function(scr, url, charset){
+    if (!url) {
+        throw new Error('Script URL cannot be empty');
+    }
+    // Check for safe protocols or relative URLs
+    var isRelativeUrl = !/^[a-zA-Z][a-zA-Z\d+\-.]*:/.test(url);
+    var isHttpsUrl = /^https:\/\//.test(url);
+    var isProtocolRelativeUrl = /^\/\//.test(url);
+    var isPathRelativeUrl = /^[\.\/]/.test(url);
+    
+    if (!isRelativeUrl && !isHttpsUrl && !isProtocolRelativeUrl && !isPathRelativeUrl) {
+        throw new Error('Only HTTPS URLs or relative paths are allowed for script loading');
+    }
+    
     scr.setAttribute('type', 'text/javascript');
     charset && scr.setAttribute('charset', charset);
     scr.setAttribute('src', url);
