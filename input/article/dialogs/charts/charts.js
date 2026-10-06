@@ -475,8 +475,9 @@ function getTableInputValue () {
 function getCellValue ( cell ) {
 
     var value = utils.trim( ( cell.innerText || cell.textContent || '' ) );
+    var escapedFillChar = (UE.dom.domUtils.fillChar || '').replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
-    return value.replace( new RegExp( UE.dom.domUtils.fillChar, 'g' ), '' ).replace( /^\s+|\s+$/g, '' );
+    return value.replace( new RegExp( escapedFillChar, 'g' ), '' ).replace( /^\s+|\s+$/g, '' );
 
 }
 
