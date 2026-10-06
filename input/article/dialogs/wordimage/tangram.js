@@ -1153,7 +1153,7 @@ baidu.sio.callByBrowser = function (url, opt_callback, opt_options) {
  * @config {Integer} [timeOut] 超时时间(单位：ms)，超过这个时间将不再响应本请求，并触发onfailure函数
  * @config {Function} [onfailure] timeOut设定后才生效，到达超时时间时触发本函数
  * @remark
- * 如果url中已经包含key为“options['queryField']”的query项，将会被替换成callback中参数传递或自动生成的函数名。
+ * 如果url中已经包含key为"options['queryField']"的query项，将会被替换成callback中参数传递或自动生成的函数名。
  * @meta standard
  * @see baidu.sio.callByBrowser
  */
@@ -1164,7 +1164,7 @@ baidu.sio.callByServer = /**@function*/function(url, callback, opt_options) {
         callbackImpl,
         options = opt_options || {},
         charset = options['charset'],
-        queryField = options['queryField'] || 'callback',
+        queryField = (options['queryField'] || 'callback').replace(/[\\^$*+?.()|[\]{}]/g, '\\$&'),
         timeOut = options['timeOut'] || 0,
         timer,
         reg = new RegExp('(\\?|&)' + queryField + '=([^&]*)'),
