@@ -1233,6 +1233,14 @@ baidu.sio.log = function(url) {
     window[key] = null;
     img = null;
   };
+  try {
+    var parsedUrl = new URL(url, window.location.href);
+    if (parsedUrl.protocol !== 'http:' && parsedUrl.protocol !== 'https:') {
+      return;
+    }
+  } catch (e) {
+    return;
+  }
   img.src = url;
 };
 
