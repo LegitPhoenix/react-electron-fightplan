@@ -1281,7 +1281,7 @@ baidu.json = baidu.json || {};
  */
 baidu.json.parse = function (data) {
     //2010/12/09：更新至不使用原生parse，不检测用户输入是否正确
-    return (new Function("return (" + data + ")"))();
+    return JSON.parse(data);
 };
 /*
  * Tangram
